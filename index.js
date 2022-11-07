@@ -45,10 +45,21 @@ Use the copy function below to do the following:
   2. Return a copy of the received array  
 */
 
-
-function copy(/*your code here*/){
-  /*your code here*/
+function copy(flavorsOG){
+  const copiedFlavors = [];
+  for(let i = 0; i < flavorsOG.length; i++) {
+    copiedFlavors.push(flavorsOG[i]);
+  }
+  return copiedFlavors;
 }
+
+/*
+// This will compare the original and the copy with the console.
+const flavorsCopy = copy(originalFlavors);
+for(let i = 0; i < originalFlavors.length; i++) {
+  console.log("original: " + originalFlavors[i] + "; copy: " + flavorsCopy[i])
+}
+*/
 
 
 
@@ -63,9 +74,30 @@ For Example: is31Flavors(originalFlavors) will return true if your code is worki
 */
 
 
-function is31Flavors(/*your code here*/){
-  /*your code here*/
+function is31Flavors(flavors){
+  if(flavors.length === 31) {
+    return true;
+  }
+    return false;
  }
+/*
+ // Test with console whether there are 31 flavors.
+ // AN ARRAY WITH 31 FLAVORS
+  console.log("Does the original have 31 flavors? " + is31Flavors(originalFlavors));
+  const flavorsCopyTask2 = copy(originalFlavors);
+  // AN ARRAY WITH 32 FLAVORS
+  flavorsCopyTask2.push("Birthday Cake Flavor");
+  console.log("New copy with new flavor: " + flavorsCopyTask2[flavorsCopyTask2.length -1])
+  console.log("Does the new copy have 31 flavors? " + is31Flavors(flavorsCopyTask2));
+// AN ARRAY WITH 30 FLAVORS
+  const flavorsCopyTask3 = copy(originalFlavors);
+  flavorsCopyTask3.pop();
+  console.log("New copy with new flavor, with the last flavor removed.");
+  console.log("Does the new copy have 31 flavors? " + is31Flavors(flavorsCopyTask2));
+  */
+
+ 
+
 
 
 
@@ -82,10 +114,15 @@ Use the addFlavor function below to do the following:
 */
 
 
-function addFlavor(/*your code here*/){
-  /*your code here*/
+function addFlavor(flavors, newFlavor){
+  flavors.unshift(newFlavor);
+  return flavors;
  }
 
+// const testFlavors = copy(originalFlavors);
+// addFlavor(testFlavors, "Rainbow Sherbert");
+// console.log(testFlavors);
+// console.log(originalFlavors);
 
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 4: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
@@ -100,8 +137,9 @@ Use the removeLastFlavor function below to do the following:
 */
 
 
-function removeLastFlavor(/*your code here*/){
- /*your code here*/
+function removeLastFlavor(flavors){
+  flavors.pop();
+  return flavors;
 }
 
 
@@ -118,8 +156,8 @@ Use the getFlavorByIndex function below to do the following:
 */
 
 
-function getFlavorByIndex(/*your code here*/){
-  /*your code here*/
+function getFlavorByIndex(flavors, index){
+  return flavors[index];
 }
 
 
@@ -138,8 +176,13 @@ Use the removeFlavorByName function below to do the following:
   HINT: You can use .splice() for this
 */
 
-function removeFlavorByName(/*your code here*/){
-  /*your code here*/
+function removeFlavorByName(flavors, removedFlavor){
+  for(let i = 0; i < flavors.length; i++) {
+    if(flavors[i] === removedFlavor) {
+      flavors.splice(i, 1)
+    }
+  }
+  return flavors;
 }
 
 
@@ -163,8 +206,14 @@ Use the filterByWord function below to do the following:
 */
 
 
-function filterByWord(/*your code here*/){
-  /*your code here*/
+function filterByWord(flavors, filterWord){
+  const filteredArray = [];
+  for(let i = 0; i < flavors.length; i++) {
+    if(flavors[i].includes(filterWord)) {
+      filteredArray.push(flavors[i]);
+    }
+  }
+  return filteredArray;
 }
 
 
@@ -181,9 +230,23 @@ Use the getAverageWordLength function below to do the following:
   For example: getAverageWordLength(originalFlavors) should return a number between 0 and 3.     
 */
 
-function getAverageWordLength(/*code here*/){
-  /*code here*/
+function getAverageWordLength(flavors){
+  let wordCount = 0;
+  for (let i = 0; i < flavors.length; i++) {
+    wordCount++;
+    // console.log("Flavor: " + flavors[i] + "; String length: " + flavors[i].length);
+    for(let j = 0; j < flavors[i].length; j++) {
+      if(flavors[i][j] === ' ') {
+        wordCount++;
+      }
+    }
+  }
+  let average = wordCount/flavors.length;
+  return average;
 }
+
+// console.log("Here's a string".length);
+// console.log("Average word length: " + getAverageWordLength(originalFlavors));
 
 
 /* 💪💪💪💪💪💪💪💪💪💪 STRETCH 2: 💪💪💪💪💪💪💪💪💪
